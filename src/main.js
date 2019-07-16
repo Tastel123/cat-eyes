@@ -3,13 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import { Tabbar, TabItem } from 'mint-ui';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+import axios from 'axios'
 
-// Vue.component(Tabbar.name, Tabbar);
-// Vue.component(TabItem.name, TabItem);
+Vue.use(Vant);
+Vue.use(MintUI)
 
-Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
+new Vue({
+  el: '#app',
+  components: { App }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <v-mine></v-mine>
+   <router-view/>
   </div>
 </template>
 
 <script>
-import Mine from '@/components/Mine/Mine'
 export default {
   name: 'App',
   components: {
-    'v-mine': Mine
+
   }
   
 }
@@ -17,7 +16,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Microsoft YaHei,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
