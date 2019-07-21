@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vant from 'vant';
-import 'vant/lib/index.css';
+import Vant from 'vant'
+import ElementUI from 'element-ui'
 import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
 import axios from 'axios'
+import 'vant/lib/index.css'
+import 'mint-ui/lib/style.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Vant);
 Vue.use(MintUI)

@@ -11,13 +11,13 @@
     <div class="swiper">
       <mt-swipe :show-indicators="false">
         <mt-swipe-item>
-          <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1070822383,923511154&fm=26&gp=0.jpg" alt="">
+          <img src="./ad1.jpg" alt="">
         </mt-swipe-item>
         <mt-swipe-item>
-          <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3483207131,1788469706&fm=26&gp=0.jpg" alt="">
+          <img src="./ad2.jpg" alt="">
         </mt-swipe-item>
         <mt-swipe-item>
-          <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=449345765,1392573695&fm=26&gp=0.jpg" alt="">
+          <img src="./ad3.jpg" alt="">
         </mt-swipe-item>
       </mt-swipe>
     </div>
@@ -28,7 +28,9 @@
         <van-dropdown-item v-model="value3" :options="option3" />
       </van-dropdown-menu>
     </div>
-    <div class="content" v-for="(item, index) in cinema" :key="index">
+    
+    <div class="content" v-for="(item, index) in cinema" :key="index" @click="toFilm">
+     
       <div class="cinema">
         <div class="cinemaName">{{item.cinemaName}}</div>
         <div class="price">
@@ -50,22 +52,36 @@
           <div class="small">{{small.zhe}}</div>
           <div class="small">{{small.ting}}</div> -->         
       </div>
-      <div class="detail">
-        <div class="hui">惠 扫毒2天下对决等12部影片特惠</div>
-        <div class="cu">促 影院特惠促销</div>
-        <div class="ka">卡 限时￥15.9促销开卡，首单更优惠</div>
+      <div class="detail" >
+        <div class="colorful">
+          <div class="hui">惠</div> 
+          <span class="desc" v-for="(detail, index) in item.detail" :key="index">{{detail.hui}}</span>
+          </div>
+        <div class="colorful">   
+          <div class="cu">促</div> 
+          <span class="desc" v-for="(detail, index) in item.detail" :key="index">{{detail.cu}}</span>
+        </div>
+        <div class="colorful">
+          <div class="ka">卡</div> 
+          <span class="desc" v-for="(detail, index) in item.detail" :key="index">{{detail.ka}}</span>
+        </div>
+        
       </div>
-    </div>
       
+    </div>
+    
 
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+// import film from '@/components/Film/Film'
 export default {
   name: "Cinema",
-  components: {},
+  components: {
+   
+  },
   data() {
     return {
       value1: 0,
@@ -100,12 +116,20 @@ export default {
        
     };
   },
+  methods: {
+    toFilm() {
+      this.$router.push({
+        path: '/Cinema/Film',
+        name: 'Film'
+      })
+    }
+  },
   created () {
     this.$http.get('https://www.easy-mock.com/mock/5ca457f0c4e9a575b66b6265/example/yingyuan')
       .then(res => {
         console.log(res)
         this.cinema = res.data.data
-        this.small = res.data.data.small
+        this.detail = res.data.data.detail 
         console.log(res.data.data)
           
     })
@@ -116,16 +140,30 @@ export default {
 <style>
 
 .swiper {
-  height: 90px;
+  height: 120px;
   background: yellow;
+}
+img {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .van-dropdown-menu__title--down , .van-icon-success:before{
-     color: #dc403a !important;
-   }
+  color: #dc403a !important;
+}
+/* .van-cell__title {
+  color: #dc403a !important;
+} */
 /* .van-dropdown-menu__item {
   border-right: 1px solid #000;
 } */
+.van-cell__title{
+  text-align: left;
+}
+.van-cell .van-cell--clickable .span{
+     color: #dc403a !important;
+}
 .content {
   width: 100%;
   box-sizing: border-box;
@@ -141,12 +179,13 @@ export default {
   float: left;
   font-size: 18px;
   font-weight: 700;
-  margin-top: 5px;
+  margin-top: 8px;
   color: #5b5b5b;
 }
 .price {
   float: right;
   margin-top: 10px;
+  position: relative;
 }
 .number{
   display: inline;
@@ -161,11 +200,13 @@ export default {
 .location {
   height: 25px;
   color: #939393;
+  position: relative;
 }
 .address {
   display: inline-block;
   font-size: 16px;
- 
+  position: absolute;
+  left: 0;
   /* overflow: hidden;
   text-overflow:ellipsis;
   display:-webkit-box; 
@@ -186,24 +227,45 @@ export default {
   width: 100%;
 }
 .small {
-  border: 1px solid #ff736d;
+  border: 1px solid #61AEBD;
   float: left;
   padding: 2px 4px 2px 1px;
-  color: #dc403a;
+  color: #7FB3BD;
   margin-right: 5px;
   font-size: 14px;
 }
 .detail {
   margin-top: 5px;
-  height: 70px;
+  height: 75px;
   width: 100%;
   margin-bottom: 5px;
 }
-.hui, .cu, .ka{
+.colorful {
   width: 100%;
   text-align: left;
   font-size: 14px;
-  margin-top: 5px;
-  color: #c0c0c0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.hui, .cu, .ka  {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  text-align: center;
+  color: #ffffff;
+}
+.hui {
+    background-color: #FC9804;
+}
+.cu {
+    background-color: #FB796C;
+}
+.ka {
+    background-color: #A877E4;
+}
+.desc{
+  color: #B4B4B4;
+  margin-left: 5px;
 }
 </style>
