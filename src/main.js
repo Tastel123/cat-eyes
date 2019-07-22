@@ -7,13 +7,15 @@ import Vant from 'vant'
 import ElementUI from 'element-ui'
 import MintUI from 'mint-ui'
 import axios from 'axios'
+
+
 import 'vant/lib/index.css'
 import 'mint-ui/lib/style.css'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Vant);
 Vue.use(MintUI)
-
+Vue.use(ElementUI);
 Vue.prototype.$http = axios
 
 new Vue({

@@ -76,6 +76,7 @@
 
 <script>
 import axios from 'axios'
+import BScroll from 'better-scroll'
 // import film from '@/components/Film/Film'
 export default {
   name: "Cinema",

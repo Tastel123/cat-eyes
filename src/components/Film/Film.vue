@@ -16,7 +16,7 @@
         </div>
         <br />
         <div class="GPS">
-          <van-icon name="location-o" />
+          <i class="el-icon-location-outline" />
         </div>
       </div>
       <div class="service">
@@ -43,7 +43,8 @@ export default {
 .mint-header {
     background-color: #dc403a !important;
 }
-
+/* .el-icon-location-outline:before{
+} */
 .header {
   width: 100%;
   height: 130px;
